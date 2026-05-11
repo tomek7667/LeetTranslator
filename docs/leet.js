@@ -1,34 +1,48 @@
 const leetDict = {
-	"a": "4",
-	"e": "3",
-	"i": "1",
-	"o": "0",
-	"s": "5"
+	a: "4",
+	e: "3",
+	i: "1",
+	o: "0",
+	s: "5",
 };
 
 const humanDict = {
-	"4": "a",
-	"3": "e",
-	"1": "i",
-	"0": "o",
-	"5": "s"
+	4: "a",
+	3: "e",
+	1: "i",
+	0: "o",
+	5: "s",
 };
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 	let leet = document.getElementById("leet");
 	let human = document.getElementById("human");
+	let seqIn = document.getElementById("seqIn");
+	let compIn = document.getElementById("compIn");
+
 	leet.addEventListener("input", () => {
 		let leetText = leet.value;
 		let newText = leet2human(leetText);
 		human.value = newText;
-		
-	})
+	});
 
 	human.addEventListener("input", () => {
 		let humanText = human.value;
 		let newText = human2leet(humanText);
 		leet.value = newText;
-	})
+	});
+
+	seqIn.addEventListener("input", () => {
+		let seq = seqIn.value;
+		let compSeq = complementarySequence(seq);
+		compIn.value = compSeq;
+	});
+
+	compIn.addEventListener("input", () => {
+		let compSeq = compIn.value;
+		let seq = complementarySequence(compSeq);
+		compIn.value = seq;
+	});
 });
 
 let human2leet = (humanText) => {
@@ -41,7 +55,17 @@ let human2leet = (humanText) => {
 		result += word + " ";
 	}
 	return result;
-}
+};
+
+/**
+ *
+ * @param {string} seq
+ */
+const complementarySequence = (seq) => {
+	let comp = seq.replaceAll("A", "0").replaceAll("T", "A").replaceAll("0", "T");
+	comp = seq.replaceAll("G", "0").replaceAll("C", "G").replaceAll("0", "C");
+	return comp.split("").reverse().join("");
+};
 
 let changeH2L = (word) => {
 	let result = "";
@@ -54,7 +78,7 @@ let changeH2L = (word) => {
 		}
 	}
 	return result;
-}
+};
 
 let leet2human = (leetText) => {
 	let arr = leetText.split(" ");
@@ -66,7 +90,7 @@ let leet2human = (leetText) => {
 		result += word + " ";
 	}
 	return result;
-}
+};
 
 let changeL2H = (word) => {
 	let result = "";
@@ -79,5 +103,4 @@ let changeL2H = (word) => {
 		}
 	}
 	return result;
-}
-
+};
