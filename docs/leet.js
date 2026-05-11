@@ -63,7 +63,7 @@ let human2leet = (humanText) => {
  */
 const complementarySequence = (seq) => {
 	let comp = seq.replaceAll("A", "0").replaceAll("T", "A").replaceAll("0", "T");
-	comp = seq.replaceAll("G", "0").replaceAll("C", "G").replaceAll("0", "C");
+	comp = comp.replaceAll("G", "0").replaceAll("C", "G").replaceAll("0", "C");
 	return comp.split("").reverse().join("");
 };
 
